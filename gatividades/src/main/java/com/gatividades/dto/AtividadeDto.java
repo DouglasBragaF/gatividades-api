@@ -9,24 +9,19 @@ public record AtividadeDto(
     LocalDate data,
     LocalTime horaInicio,
     LocalTime horaFim,
-    String descricao,
-    String observacoes) {
+    String projeto,
+    String cliente,
+    String atividade,
+    String observacao) {
   public static AtividadeDto toDto(Atividade atividade) {
     return new AtividadeDto(
         atividade.getId(),
         atividade.getData(),
         atividade.getHoraInicio(),
         atividade.getHoraFim(),
-        atividade.getDescricao(),
-        atividade.getObservacoes());
-  }
-
-  public Atividade toEntity() {
-    return new Atividade(
-        this.data(),
-        this.horaInicio(),
-        this.horaFim(),
-        this.descricao(),
-        this.observacoes());
+        atividade.getProjeto(),
+        atividade.getCliente(),
+        atividade.getAtividade(),
+        atividade.getObservacao());
   }
 }

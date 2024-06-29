@@ -28,20 +28,29 @@ public class Atividade {
   private LocalTime horaFim;
 
   @Column(nullable = false)
-  private String descricao;
+  private String atividade;
 
   @Column(nullable = false)
-  private String observacoes;
+  private String observacao;
+
+  @Column(nullable = false)
+  private String projeto;
+
+  @Column(nullable = false)
+  private String cliente;
 
   public Atividade() {
   }
 
-  public Atividade(LocalDate data, LocalTime horaInicio, LocalTime horaFim, String descricao, String observacoes) {
+  public Atividade(LocalDate data, LocalTime horaInicio, LocalTime horaFim, String projeto, String cliente,
+      String atividade, String observacao) {
     this.data = data;
     this.horaInicio = horaInicio;
     this.horaFim = horaFim;
-    this.descricao = descricao;
-    this.observacoes = observacoes;
+    this.projeto = projeto;
+    this.cliente = cliente;
+    this.atividade = atividade;
+    this.observacao = observacao;
   }
 
   public Long getId() {
@@ -76,20 +85,35 @@ public class Atividade {
     this.horaFim = horaFim;
   }
 
-  public String getDescricao() {
-    return descricao;
+  public String getProjeto() {
+    return projeto;
   }
 
-  public void setDescricao(String descricao) {
-    this.descricao = descricao;
+  public void setProjeto(String projeto) {
+    this.projeto = projeto;
   }
 
-  public String getObservacoes() {
-    return observacoes;
+  public String getCliente() {
+    return cliente;
   }
 
-  public void setObservacoes(String observacoes) {
-    this.observacoes = observacoes;
+  public void setCliente(String cliente) {
+    this.cliente = cliente;
   }
 
+  public String getAtividade() {
+    return atividade;
+  }
+
+  public void setAtividade(String atividade) {
+    this.atividade = atividade;
+  }
+
+  public String getObservacao() {
+    return observacao;
+  }
+
+  public void setObservacao(String observacao) {
+    this.observacao = observacao;
+  }
 }

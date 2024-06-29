@@ -1,15 +1,14 @@
 package com.gatividades.service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.gatividades.dto.AtividadeDto;
 import com.gatividades.model.Atividade;
 import com.gatividades.repository.AtividadeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AtividadeService {
@@ -17,16 +16,16 @@ public class AtividadeService {
   @Autowired
   private AtividadeRepository atividadeRepository;
 
-  public List<AtividadeDto> listarAtividades() {
-    return atividadeRepository.findAll()
-        .stream()
-        .map(AtividadeDto::toDto)
-        .collect(Collectors
-            .toList());
+  public AtividadeDto registrarAtividade(AtividadeDto atividadeDto) {
+    Atividade atividade = mapToEntity(atividadeDto);
+    Atividade savedAtividade = atividadeRepository.save(atividade);
+    return AtividadeDto.toDto(savedAtividade);
   }
 
-  public AtividadeDto registrarAtividade(AtividadeDto atividadeDto) {
-    return AtividadeDto.toDto(atividadeRepository.save(atividadeDto.toEntity()));
+  public List<AtividadeDto> listarAtividades() {
+    return atividadeRepository.findAll().stream()
+        .map(AtividadeDto::toDto)
+        .collect(Collectors.toList());
   }
 
   public AtividadeDto obterAtividadePorId(Long id) {
@@ -59,7 +58,9 @@ public class AtividadeService {
         atividadeDto.data(),
         atividadeDto.horaInicio(),
         atividadeDto.horaFim(),
-        atividadeDto.descricao(),
-        atividadeDto.observacoes());
+        atividadeDto.projeto(),
+        atividadeDto.cliente(),
+        atividadeDto.atividade(),
+        atividadeDto.observacao());
   }
 }
