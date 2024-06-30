@@ -59,6 +59,7 @@ public class AtividadeService {
         atividadeDto.horaInicio(),
         atividadeDto.horaFim(),
         atividadeDto.projeto(),
+        atividadeDto.idCliente(),
         atividadeDto.usuarioId(),
         atividadeDto.atividade(),
         atividadeDto.observacao());

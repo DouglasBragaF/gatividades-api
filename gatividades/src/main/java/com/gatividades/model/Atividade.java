@@ -25,8 +25,19 @@ public class Atividade {
   @Column(nullable = false)
   private String projeto;
 
-  @Column(nullable = false)
+  @Column(name = "id_cliente", nullable = false)
+  private Long idCliente;
+
+  @ManyToOne
+  @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+  private Cliente cliente;
+
+  @Column(name = "usuario_id", nullable = false)
   private Long usuarioId;
+
+  @ManyToOne
+  @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
+  private Usuario usuario;
 
   @Column(nullable = false)
   private String atividade;
@@ -37,13 +48,23 @@ public class Atividade {
   public Atividade() {
   }
 
-  public Atividade(Long id, LocalDate data, LocalTime horaInicio, LocalTime horaFim, String projeto, Long usuarioId,
-      String atividade, String observacao) {
+  public Atividade(
+      Long id,
+      LocalDate data,
+      LocalTime horaInicio,
+      LocalTime horaFim,
+      String projeto,
+      Long idCliente,
+      Long usuarioId,
+      String atividade,
+      String observacao) {
+
     this.id = id;
     this.data = data;
     this.horaInicio = horaInicio;
     this.horaFim = horaFim;
     this.projeto = projeto;
+    this.idCliente = idCliente;
     this.usuarioId = usuarioId;
     this.atividade = atividade;
     this.observacao = observacao;
@@ -88,6 +109,10 @@ public class Atividade {
 
   public void setProjeto(String projeto) {
     this.projeto = projeto;
+  }
+
+  public Long getIdCliente() {
+    return idCliente;
   }
 
   public Long getUsuarioId() {
