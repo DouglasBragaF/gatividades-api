@@ -3,12 +3,7 @@ package com.gatividades.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "atividades")
@@ -31,7 +26,7 @@ public class Atividade {
   private String projeto;
 
   @Column(nullable = false)
-  private Long idCliente;
+  private Long usuarioId;
 
   @Column(nullable = false)
   private String atividade;
@@ -42,14 +37,14 @@ public class Atividade {
   public Atividade() {
   }
 
-  public Atividade(Long id, LocalDate data, LocalTime horaInicio, LocalTime horaFim, String projeto, Long idCliente,
+  public Atividade(Long id, LocalDate data, LocalTime horaInicio, LocalTime horaFim, String projeto, Long usuarioId,
       String atividade, String observacao) {
     this.id = id;
     this.data = data;
     this.horaInicio = horaInicio;
     this.horaFim = horaFim;
     this.projeto = projeto;
-    this.idCliente = idCliente;
+    this.usuarioId = usuarioId;
     this.atividade = atividade;
     this.observacao = observacao;
   }
@@ -95,12 +90,12 @@ public class Atividade {
     this.projeto = projeto;
   }
 
-  public Long getIdCliente() {
-    return idCliente;
+  public Long getUsuarioId() {
+    return usuarioId;
   }
 
-  public void setIdCliente(Long idCliente) {
-    this.idCliente = idCliente;
+  public void setUsuarioId(Long usuarioId) {
+    this.usuarioId = usuarioId;
   }
 
   public String getAtividade() {

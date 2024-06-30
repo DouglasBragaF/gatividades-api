@@ -10,7 +10,7 @@ public record AtividadeDto(
     LocalTime horaInicio,
     LocalTime horaFim,
     String projeto,
-    Long idCliente,
+    Long usuarioId,
     String atividade,
     String observacao) {
 
@@ -21,7 +21,7 @@ public record AtividadeDto(
         atividade.getHoraInicio(),
         atividade.getHoraFim(),
         atividade.getProjeto(),
-        atividade.getIdCliente(),
+        atividade.getUsuarioId(),
         atividade.getAtividade(),
         atividade.getObservacao());
   }
@@ -33,7 +33,7 @@ public record AtividadeDto(
         atividadeDto.horaInicio(),
         atividadeDto.horaFim(),
         atividadeDto.projeto(),
-        atividadeDto.idCliente(),
+        atividadeDto.usuarioId(),
         atividadeDto.atividade(),
         atividadeDto.observacao());
   }

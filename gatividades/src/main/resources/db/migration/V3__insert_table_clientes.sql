@@ -1,4 +1,3 @@
--- Inserir exemplos de dados na tabela clientes
 INSERT INTO clientes (nome, cnpj, contato) VALUES 
 ('T2M', '00.000.000/0001-00', 'contato@t2m.com.br'),
 ('Petrobras', '11.111.111/0001-11', 'contato@petrobras.com.br'),

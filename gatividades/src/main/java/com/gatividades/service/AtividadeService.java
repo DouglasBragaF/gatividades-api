@@ -28,19 +28,18 @@ public class AtividadeService {
         .collect(Collectors.toList());
   }
 
-  public AtividadeDto obterAtividadePorId(Long id) {
-    Optional<Atividade> atividade = atividadeRepository.findById(id);
-    return atividade.map(AtividadeDto::toDto).orElse(null);
+  public Optional<AtividadeDto> obterAtividadePorId(Long id) {
+    return atividadeRepository.findById(id).map(AtividadeDto::toDto);
   }
 
-  public AtividadeDto atualizarAtividade(Long id, AtividadeDto atividadeDto) {
+  public Optional<AtividadeDto> atualizarAtividade(Long id, AtividadeDto atividadeDto) {
     if (atividadeRepository.existsById(id)) {
       Atividade atividade = mapToEntity(atividadeDto);
       atividade.setId(id);
       Atividade updatedAtividade = atividadeRepository.save(atividade);
-      return AtividadeDto.toDto(updatedAtividade);
+      return Optional.of(AtividadeDto.toDto(updatedAtividade));
     } else {
-      return null;
+      return Optional.empty();
     }
   }
 
@@ -60,9 +59,8 @@ public class AtividadeService {
         atividadeDto.horaInicio(),
         atividadeDto.horaFim(),
         atividadeDto.projeto(),
-        atividadeDto.idCliente(),
+        atividadeDto.usuarioId(),
         atividadeDto.atividade(),
         atividadeDto.observacao());
   }
-
 }

@@ -1,6 +1,7 @@
 package com.gatividades.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,28 +24,23 @@ public class GAtividadesController {
 
   @GetMapping("/{id}")
   public ResponseEntity<AtividadeDto> obterAtividadePorId(@PathVariable Long id) {
-    AtividadeDto atividade = service.obterAtividadePorId(id);
-    if (atividade != null) {
-      return ResponseEntity.ok(atividade);
-    } else {
-      return ResponseEntity.notFound().build();
-    }
+    Optional<AtividadeDto> atividade = service.obterAtividadePorId(id);
+    return atividade.map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
   }
 
   @PostMapping
   public ResponseEntity<AtividadeDto> registrarAtividade(@RequestBody AtividadeDto atividadeDto) {
-    return ResponseEntity.ok(service.registrarAtividade(atividadeDto));
+    AtividadeDto atividadeSalva = service.registrarAtividade(atividadeDto);
+    return ResponseEntity.ok(atividadeSalva);
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<AtividadeDto> atualizarAtividade(@PathVariable Long id,
       @RequestBody AtividadeDto atividadeDto) {
-    AtividadeDto atividadeAtualizada = service.atualizarAtividade(id, atividadeDto);
-    if (atividadeAtualizada != null) {
-      return ResponseEntity.ok(atividadeAtualizada);
-    } else {
-      return ResponseEntity.notFound().build();
-    }
+    Optional<AtividadeDto> atividadeAtualizada = service.atualizarAtividade(id, atividadeDto);
+    return atividadeAtualizada.map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
   }
 
   @DeleteMapping("/{id}")
