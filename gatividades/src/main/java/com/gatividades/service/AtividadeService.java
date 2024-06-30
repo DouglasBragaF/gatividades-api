@@ -55,12 +55,14 @@ public class AtividadeService {
 
   private Atividade mapToEntity(AtividadeDto atividadeDto) {
     return new Atividade(
+        atividadeDto.id(),
         atividadeDto.data(),
         atividadeDto.horaInicio(),
         atividadeDto.horaFim(),
         atividadeDto.projeto(),
-        atividadeDto.cliente(),
+        atividadeDto.idCliente(),
         atividadeDto.atividade(),
         atividadeDto.observacao());
   }
+
 }

@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "atividade")
+@Table(name = "atividades")
 public class Atividade {
 
   @Id
@@ -28,31 +28,33 @@ public class Atividade {
   private LocalTime horaFim;
 
   @Column(nullable = false)
+  private String projeto;
+
+  @Column(nullable = false)
+  private Long idCliente;
+
+  @Column(nullable = false)
   private String atividade;
 
   @Column(nullable = false)
   private String observacao;
 
-  @Column(nullable = false)
-  private String projeto;
-
-  @Column(nullable = false)
-  private String cliente;
-
   public Atividade() {
   }
 
-  public Atividade(LocalDate data, LocalTime horaInicio, LocalTime horaFim, String projeto, String cliente,
+  public Atividade(Long id, LocalDate data, LocalTime horaInicio, LocalTime horaFim, String projeto, Long idCliente,
       String atividade, String observacao) {
+    this.id = id;
     this.data = data;
     this.horaInicio = horaInicio;
     this.horaFim = horaFim;
     this.projeto = projeto;
-    this.cliente = cliente;
+    this.idCliente = idCliente;
     this.atividade = atividade;
     this.observacao = observacao;
   }
 
+  // Getters and Setters
   public Long getId() {
     return id;
   }
@@ -93,12 +95,12 @@ public class Atividade {
     this.projeto = projeto;
   }
 
-  public String getCliente() {
-    return cliente;
+  public Long getIdCliente() {
+    return idCliente;
   }
 
-  public void setCliente(String cliente) {
-    this.cliente = cliente;
+  public void setIdCliente(Long idCliente) {
+    this.idCliente = idCliente;
   }
 
   public String getAtividade() {

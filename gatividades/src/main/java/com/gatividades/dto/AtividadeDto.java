@@ -10,9 +10,10 @@ public record AtividadeDto(
     LocalTime horaInicio,
     LocalTime horaFim,
     String projeto,
-    String cliente,
+    Long idCliente,
     String atividade,
     String observacao) {
+
   public static AtividadeDto toDto(Atividade atividade) {
     return new AtividadeDto(
         atividade.getId(),
@@ -20,8 +21,20 @@ public record AtividadeDto(
         atividade.getHoraInicio(),
         atividade.getHoraFim(),
         atividade.getProjeto(),
-        atividade.getCliente(),
+        atividade.getIdCliente(),
         atividade.getAtividade(),
         atividade.getObservacao());
+  }
+
+  public static Atividade toEntity(AtividadeDto atividadeDto) {
+    return new Atividade(
+        atividadeDto.id(),
+        atividadeDto.data(),
+        atividadeDto.horaInicio(),
+        atividadeDto.horaFim(),
+        atividadeDto.projeto(),
+        atividadeDto.idCliente(),
+        atividadeDto.atividade(),
+        atividadeDto.observacao());
   }
 }
